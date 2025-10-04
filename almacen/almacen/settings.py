@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # se registran las aplicaciones creadas en el proyecto
     'productos',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'mssql',
         'NAME': 'InventarioBD-G2',
-        'HOST': 'DESKTOP-G40T8T8\\SQLEXPRESS',
+        'HOST': '<cambiar host>\\SQLEXPRESS',
         'PORT': '1433',
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
