@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'mssql',
         'NAME': 'InventarioBD-G2',
-        'HOST': '<cambiar host>\\SQLEXPRESS',
+        'HOST': 'Frank\\SQLEXPRESS',
         'PORT': '1433',
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
@@ -125,6 +125,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Para desarrollo, indicamos dónde buscar los archivos
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

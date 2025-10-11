@@ -3,26 +3,26 @@
 {% block titulo %} Listado de Categorias {% endblock %}
 
 
-{% block contenido %} 
-    <h1 class="text-center">Listado de Categorias</h1>
-        <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Descripción</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for c in categorias %}
-            <tr>
-              <th scope="row">{{ c.id }}</th>
-              <td>{{ c.nombre }}</td>
-              <td>{{ c.descripcion }}</td>
-            </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+{% block contenido %}
+<h1 class="text-center">Listado de Categorias</h1>
+<a href="{% url 'productos:categoria-create' %}" class="btn btn-outline-success">Nueva Categoria</a>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in categorias %}
+    <tr>
+      <th scope="row">{{ c.id }}</th>
+      <td>{{ c.nombre }}</td>
+      <td>{{ c.descripcion }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
-
-
