@@ -1,6 +1,6 @@
 {% extends "core/base.html" %}
 
-{% block titulo %} Nueva Categoria {% endblock %}
+{% block titulo %} Nuevo Proveedor {% endblock %}
 
 
 {% block contenido %}     
@@ -8,14 +8,14 @@
         {% csrf_token %}
         <div class="card shadow-lg">
             <div class="card-header">
-                <h2 class="card-title text-center">Nueva Categoria</h2>
+                <h2 class="card-title text-center">Nuevo Proveedor</h2>
             </div>
             <div class="card-body">
                 {{ form.as_table }}
             </div>
             <div class="card-footer d-flex justify-content-evenly">
                 <button type="submit" class="btn btn-success">Guardar</button>
-                <a href="{% url 'productos:categoria-list' %}" class="btn btn-outline-info">Cancelar</a>
+                <a href="{% url 'productos:proveedor-list' %}" class="btn btn-outline-info">Cancelar</a>
             </div>
         </div>
     </form>

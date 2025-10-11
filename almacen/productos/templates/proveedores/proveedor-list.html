@@ -1,0 +1,29 @@
+{% extends "core/base.html" %}
+
+{% block titulo %} Listado de Proveedores {% endblock %}
+
+{% block contenido %}
+<h1 class="text-center">Listado de Proveedores</h1>
+<a href="{% url 'productos:proveedor-create' %}" class="btn btn-outline-success">Nuevo Proveedor</a>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Contacto</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in proveedores %}
+    <tr>
+      <th scope="row">{{ p.id }}</th>
+      <td>{{ p.nombre }}</td>
+      <td>{{ p.telefono }}</td>
+      <td>{{ p.contacto }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
