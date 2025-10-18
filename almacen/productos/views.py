@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from .models import Categoria, Proveedor, Producto
 # importar reverse_lazy de urls para redireccionar la respuesta a un formulario
 from django.urls import reverse_lazy
@@ -55,6 +55,14 @@ class ProductoListView(ListView):
     context_object_name = "productos"
 
 class ProductoCreateView(CreateView):
+
+    model = Producto
+    form_class = ProductoForm
+    template_name = "productos/producto-form.html"
+    success_url = reverse_lazy("productos:producto-list")
+
+
+class ProductoUpdateView(UpdateView):
 
     model = Producto
     form_class = ProductoForm

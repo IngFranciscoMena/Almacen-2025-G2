@@ -1,22 +1,86 @@
 {% extends "core/base.html" %}
+<!-- agregar titulo si es edición o creación -->
+{% block titulo %} 
+    {% if form.instance.pk %} 
+        Editar Producto
+    {% else %}
+        Nuevo Producto 
+    {% endif %}
+{% endblock %}
 
-{% block titulo %} Nuevo Producto {% endblock %}
 
-
-{% block contenido %}     
-    <form method="post">
-        {% csrf_token %}
-        <div class="card shadow-lg">
-            <div class="card-header">
-                <h2 class="card-title text-center">Nuevo Producto</h2>
-            </div>
-            <div class="card-body">
-                {{ form.as_table }}
-            </div>
-            <div class="card-footer d-flex justify-content-evenly">
-                <button type="submit" class="btn btn-success">Guardar</button>
-                <a href="{% url 'productos:producto-list' %}" class="btn btn-outline-info">Cancelar</a>
-            </div>
+{% block contenido %}
+<form method="post">
+    {% csrf_token %}
+    <div class="card shadow-lg">
+        <div class="card-header">
+            <h2 class="card-title text-center">
+                 {% if form.instance.pk %} 
+                    Editar Producto
+                {% else %}
+                    Nuevo Producto 
+                {% endif %}
+            </h2>
         </div>
-    </form>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        {{ form.nombre }}
+                        {{ form.nombre.label_tag }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        {{ form.descripcion }}
+                        {{ form.descripcion.label_tag }}
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        {{ form.precio_compra }}
+                        {{ form.precio_compra.label_tag }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        {{ form.precio_venta }}
+                        {{ form.precio_venta.label_tag }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        {{ form.categoria }}
+                        {{ form.categoria.label_tag }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        {{ form.proveedor }}
+                        {{ form.proveedor.label_tag }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-check">
+                        {{ form.activo }}
+                        {{ form.activo.label_tag }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer d-flex justify-content-evenly">
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="{% url 'productos:producto-list' %}" class="btn btn-outline-info">Cancelar</a>
+        </div>
+    </div>
+</form>
 {% endblock %}
