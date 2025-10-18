@@ -18,7 +18,7 @@
   <tbody>
     {% for c in categorias %}
     <tr>
-      <th scope="row">{{ c.id }}</th>
+      <th scope="row">{{ forloop.counter }}</th>
       <td>{{ c.nombre }}</td>
       <td>{{ c.descripcion }}</td>
     </tr>

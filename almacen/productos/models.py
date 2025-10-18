@@ -15,6 +15,10 @@ class Categoria(models.Model):
         verbose_name_plural = "Categorias"
         ordering = ["nombre"]
 
+    # polimorfismo
+    def __str__(self):
+        return f"{self.nombre}"
+
 # modelo proveedor
 class Proveedor(models.Model):
 
@@ -31,6 +35,10 @@ class Proveedor(models.Model):
         verbose_name_plural = "Proveedores"
         ordering = ["nombre"]
 
+    # polimorfismo
+    def __str__(self):
+        return f"{self.nombre}"
+
 # importar la clase Model de models.
 # create table Producto()
 class Producto(models.Model): # aplicando herencia
@@ -43,6 +51,7 @@ class Producto(models.Model): # aplicando herencia
     precio_venta = models.DecimalField(max_digits=12, decimal_places=2)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
+    activo = models.BooleanField(default=True)
 
 
     # ajustes a las tablas y modelos => 's o => oes

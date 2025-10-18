@@ -5,7 +5,10 @@ from .views import (
     CategoriaCreateView,
     # proveedores
     ProveedorListView,
-    ProveedorCreateView
+    ProveedorCreateView,
+    # productos
+    ProductoListView,
+    ProductoCreateView
 )
 
 # agregar un identificador de enrutamiento
@@ -17,5 +20,8 @@ urlpatterns = [
     path('categorias/nueva', CategoriaCreateView.as_view(), name="categoria-create"),
     # proveedores
     path('proveedores/', ProveedorListView.as_view(), name="proveedor-list"),
-    path('proveedores/nuevo', ProveedorCreateView.as_view(), name="proveedor-create")
+    path('proveedores/nuevo', ProveedorCreateView.as_view(), name="proveedor-create"),
+    # productos
+    path('', ProductoListView.as_view(), name="producto-list"),
+    path('nuevo/', ProductoCreateView.as_view(), name="producto-create"),    
 ]
