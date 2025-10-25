@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'mssql',
         'NAME': 'InventarioBD-G2',
-        'HOST': 'DESKTOP-G40T8T8\\SQLEXPRESS',
+        'HOST': 'FRANK\\SQLEXPRESS',
         'PORT': '1433',
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',

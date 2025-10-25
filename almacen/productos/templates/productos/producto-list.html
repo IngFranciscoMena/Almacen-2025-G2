@@ -7,10 +7,11 @@
 <h1 class="text-center">Listado de Productos</h1>
 <a href="{% url 'productos:producto-create' %}" class="btn btn-outline-success">Nuevo Producto</a>
 <hr>
-<table class="table">
+<table class="table table-bordered table-striped text-center">
   <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col">Código</th>
       <th scope="col">Nombre</th>
       <th scope="col">Precio</th>
       <th scope="col">Activo</th>
@@ -21,12 +22,14 @@
     {% for p in productos %}
     <tr>
       <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ p.id }}</td>
       <td>{{ p.nombre }}</td>
-      <td>{{ p.precio_venta }}</td>
+      <td>${{ p.precio_venta|floatformat:2 }}</td>
       <td>{{ p.activo }}</td>
       <td>
+        <a href="{% url 'productos:producto-detail' p.id %}" class="btn btn-outline-info">Detalle</a>
         <a href="{% url 'productos:producto-update' p.id %}" class="btn btn-outline-warning">Editar</a>
-        <a href="" class="btn btn-outline-danger">Eliminar</a>
+        <a href="{% url 'productos:producto-delete' p.id %}" class="btn btn-outline-danger">Eliminar</a>
       </td>
     </tr>
     {% endfor %}

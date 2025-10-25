@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import Categoria, Proveedor, Producto
 # importar reverse_lazy de urls para redireccionar la respuesta a un formulario
 from django.urls import reverse_lazy
@@ -68,3 +68,23 @@ class ProductoUpdateView(UpdateView):
     form_class = ProductoForm
     template_name = "productos/producto-form.html"
     success_url = reverse_lazy("productos:producto-list")
+
+
+class ProductoDeleteView(DeleteView):
+    
+    model = Producto
+    template_name = "productos/producto-confirm.html"
+    success_url = reverse_lazy("productos:producto-list")
+    
+    # polimorfismo
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        contexto["titulo"] = f"Eliminar producto: {self.object.nombre}"
+        return contexto
+    
+
+class ProductoDetailView(DetailView):
+    
+    model = Producto
+    template_name = "productos/producto-detail.html"
+    context_object_name = "producto"

@@ -9,7 +9,9 @@ from .views import (
     # productos
     ProductoListView,
     ProductoCreateView,
-    ProductoUpdateView
+    ProductoUpdateView,
+    ProductoDeleteView,
+    ProductoDetailView
 )
 
 # agregar un identificador de enrutamiento
@@ -24,6 +26,8 @@ urlpatterns = [
     path('proveedores/nuevo', ProveedorCreateView.as_view(), name="proveedor-create"),
     # productos
     path('', ProductoListView.as_view(), name="producto-list"),
+    path('<int:pk>', ProductoDetailView.as_view(), name="producto-detail"),
     path('nuevo/', ProductoCreateView.as_view(), name="producto-create"),    
     path('editar/<int:pk>', ProductoUpdateView.as_view(), name="producto-update"),    
+    path('eliminar/<int:pk>', ProductoDeleteView.as_view(), name="producto-delete")
 ]

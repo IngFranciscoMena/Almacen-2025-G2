@@ -1,0 +1,38 @@
+{% extends "core/base.html" %}
+
+{% block title %}Detalle de Producto{% endblock %}
+
+{% block contenido %}
+<div class="card">
+  <div class="card-header">
+    <h2 class="text-center card-title">Detalle del Producto</h2>
+  </div>
+  <div class="card-body">
+    <p><strong>Nombre:</strong> {{ producto.nombre }}</p>
+    <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+    <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+    <p><strong>Proveedor:</strong> {{ producto.proveedor }}</p>
+    <p><strong>Precio de compra:</strong> ${{ producto.precio_compra }}</p>
+    <p><strong>Precio de venta:</strong> ${{ producto.precio_venta }}</p>
+    <p><strong>Activo:</strong> {{ producto.activo }}</p>
+    <hr>
+    <!-- <h3 class="card-subtitle">Inventario</h3>
+    {% if producto.inventario_set.all %}
+    <ul>
+      {% for inv in producto.inventario_set.all %}
+      <li>
+        {{ inv.sucursal.nombre }} — Stock: {{ inv.stock }} (Mínimo: {{ inv.stock_minimo }})
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>Este producto no tiene inventario registrado.</p>
+    {% endif %} -->
+  </div>
+  <div class="card-footer text-center">
+    <a class="btn btn-outline-info" href="{% url 'productos:producto-list' %}">Volver al listado</a>
+    <a class="btn btn-outline-warning" href="{% url 'productos:producto-update' producto.id %}">Editar</a>
+    <a class="btn btn-outline-danger" href="{% url 'productos:producto-delete' producto.id %}">Eliminar</a>
+  </div>
+</div>
+{% endblock %}
