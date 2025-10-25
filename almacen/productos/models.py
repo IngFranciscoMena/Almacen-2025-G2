@@ -60,8 +60,6 @@ class Producto(models.Model): # aplicando herencia
         verbose_name_plural = "Productos"
         ordering = ["nombre"]
 
-
-
     # crear un metodo
     def __str__(self): # polimorfismo
         return f"{self.nombre} - {self.stock} unidades"

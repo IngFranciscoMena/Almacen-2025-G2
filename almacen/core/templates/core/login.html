@@ -1,0 +1,43 @@
+{% load static %}
+{# {% load static widget_tweaks %} #}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'core/css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+            <h3 class="text-center mb-4">Iniciar Sesión</h3>
+            
+            {% if form.errors %}
+                <div class="alert alert-danger">Usuario o contraseña incorrectos</div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    {# {{ form.username|add_class:"form-control" }} #}
+                </div>
+                <div class="mb-3">
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                    {# {{ form.password|add_class:"form-control" }} #}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'core/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

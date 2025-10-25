@@ -135,3 +135,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Parametros para el logeo de la aplicacion
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "productos:producto-list"
