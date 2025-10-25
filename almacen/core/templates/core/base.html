@@ -31,10 +31,15 @@
                         <a class="nav-link" href="{% url 'productos:producto-list' %}">Productos</a>
                     </li>
                 </ul>
-                {% comment %} <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form> {% endcomment %}
+                {% if user.is_authenticated %}
+                    <span class="navbar-text text-light me-2">Usuario: {{ user.username }}</span>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger">Cerrar sesión</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-primary">Iniciar Sesión</a>
+                {% endif %}
                 </div>
             </div>
             </nav>

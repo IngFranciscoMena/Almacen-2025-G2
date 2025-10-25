@@ -27,9 +27,15 @@
       <td>${{ p.precio_venta|floatformat:2 }}</td>
       <td>{{ p.activo }}</td>
       <td>
+        {% if user.name == "admin" %}
         <a href="{% url 'productos:producto-detail' p.id %}" class="btn btn-outline-info">Detalle</a>
         <a href="{% url 'productos:producto-update' p.id %}" class="btn btn-outline-warning">Editar</a>
         <a href="{% url 'productos:producto-delete' p.id %}" class="btn btn-outline-danger">Eliminar</a>
+        {% else %}
+        <a href="{% url 'productos:producto-detail' p.id %}" class="btn btn-outline-info">Detalle</a>
+        <a href="{% url 'productos:producto-update' p.id %}" class="btn btn-outline-warning">Editar</a>
+        {% endif%}
+        
       </td>
     </tr>
     {% endfor %}
