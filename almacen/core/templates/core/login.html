@@ -1,5 +1,5 @@
 {% load static %}
-{# {% load static widget_tweaks %} #}
+{% load static widget_tweaks %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,15 +24,16 @@
                 {% csrf_token %}
                 <div class="mb-3">
                     {{ form.username.label_tag }}
-                    {{ form.username }}
-                    {# {{ form.username|add_class:"form-control" }} #}
+                    {{ form.username|add_class:"form-control" }}
                 </div>
                 <div class="mb-3">
                     {{ form.password.label_tag }}
-                    {{ form.password }}
-                    {# {{ form.password|add_class:"form-control" }} #}
+                    {{ form.password|add_class:"form-control" }}
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+                <div class="d-flex justify-content-around">
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                    <a href="{% url 'register' %}" class="btn btn-success">Registrarse</a>
+                </div>
             </form>
         </div>
     </div>

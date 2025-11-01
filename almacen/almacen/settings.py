@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     # se registran las aplicaciones creadas en el proyecto
     'productos',
     'core',
+    'clientes',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

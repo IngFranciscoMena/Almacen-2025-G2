@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load user_groups %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,15 +21,29 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'productos:categoria-list' %}">Categorias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'productos:proveedor-list' %}">Proveedores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'productos:producto-list' %}">Productos</a>
-                    </li>
+                    {% if user.is_authenticated %}
+
+                        {% if user|has_group:"Clientes" %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Mis Pedidos</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Mi Perfil</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'productos:categoria-list' %}">Categorias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'productos:proveedor-list' %}">Proveedores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'productos:producto-list' %}">Productos</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+
                 </ul>
                 {% if user.is_authenticated %}
                     <span class="navbar-text text-light me-2">Usuario: {{ user.username }}</span>
