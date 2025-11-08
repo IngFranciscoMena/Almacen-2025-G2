@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
+{% load user_groups %}
 
 {% block titulo %} Listado de Productos {% endblock %}
-
 
 {% block contenido %}
 <h1 class="text-center">Listado de Productos</h1>
@@ -27,14 +27,20 @@
       <td>${{ p.precio_venta|floatformat:2 }}</td>
       <td>{{ p.activo }}</td>
       <td>
-        {% if user.name == "admin" %}
-        <a href="{% url 'productos:producto-detail' p.id %}" class="btn btn-outline-info">Detalle</a>
-        <a href="{% url 'productos:producto-update' p.id %}" class="btn btn-outline-warning">Editar</a>
-        <a href="{% url 'productos:producto-delete' p.id %}" class="btn btn-outline-danger">Eliminar</a>
+        {% if user.is_authenticated %}
+          {% if user|has_group:"Administrador" %}
+            <a href="{% url 'productos:producto-detail' p.id %}" class="btn btn-outline-info">Detalle</a>
+            <a href="{% url 'productos:producto-update' p.id %}" class="btn btn-outline-warning">Editar</a>
+            <a href="{% url 'productos:producto-delete' p.id %}" class="btn btn-outline-danger">Eliminar</a>
+          {% elif user|has_group:"Inventario" %}
+            <a href="{% url 'productos:producto-detail' p.id %}" class="btn btn-outline-info">Detalle</a>
+            <a href="{% url 'productos:producto-update' p.id %}" class="btn btn-outline-warning">Editar</a>
+          {% else %}
+            <p>No estas autorizado</p>
+          {% endif%}
         {% else %}
-        <a href="{% url 'productos:producto-detail' p.id %}" class="btn btn-outline-info">Detalle</a>
-        <a href="{% url 'productos:producto-update' p.id %}" class="btn btn-outline-warning">Editar</a>
-        {% endif%}
+          <p>No estas autorizado</p>
+        {% endif %}      
         
       </td>
     </tr>
