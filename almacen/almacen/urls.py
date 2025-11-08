@@ -23,6 +23,4 @@ urlpatterns = [
     path('', include('core.urls')),
     path('admin/', admin.site.urls),
     path('productos/', include('productos.urls')), # incluyendo el archivo urls de la aplicación producto
-    path('clientes/', include('clientes.urls'))
-    
 ]

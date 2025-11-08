@@ -3,6 +3,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from .forms import RegistroUsuarioForm
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 class CustomLoginView(LoginView):
@@ -26,3 +28,9 @@ class RegistroUsuarioCreateView(CreateView):
         user = form.save()
 
         return super().form_valid(form)
+
+# Pagina de Inicio
+@login_required
+def pagina_home(request):
+
+    return render(request, "home/home.html")

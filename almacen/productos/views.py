@@ -5,11 +5,13 @@ from .models import Categoria, Proveedor, Producto
 from django.urls import reverse_lazy
 # importar los formularios personalizados
 from .forms import CategoriaForm, ProveedorForm, ProductoForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 
 # crear vistas genericas para categoria
-class CategoriaListView(ListView):
+class CategoriaListView(LoginRequiredMixin, ListView):
 
     # indicar cual es el modelo base
     model = Categoria
@@ -19,7 +21,7 @@ class CategoriaListView(ListView):
     
     
 # crear una vista generica para agregar una categoria
-class CategoriaCreateView(CreateView):
+class CategoriaCreateView(LoginRequiredMixin, CreateView):
     
     # indicar cual es el modelo base
     model = Categoria
@@ -30,7 +32,7 @@ class CategoriaCreateView(CreateView):
     
     
 # Proveedores
-class ProveedorListView(ListView):
+class ProveedorListView(LoginRequiredMixin, ListView):
     
     model = Proveedor
     fields = ["nombre", "telefono", "contacto"]
@@ -38,7 +40,7 @@ class ProveedorListView(ListView):
     context_object_name = "proveedores"
     
     
-class ProveedorCreateView(CreateView):
+class ProveedorCreateView(LoginRequiredMixin, CreateView):
     
     model = Proveedor
     form_class = ProveedorForm
@@ -48,13 +50,13 @@ class ProveedorCreateView(CreateView):
 
 # Productos
 
-class ProductoListView(ListView):
+class ProductoListView(LoginRequiredMixin, ListView):
 
     model = Producto
     template_name = "productos/producto-list.html"
     context_object_name = "productos"
 
-class ProductoCreateView(CreateView):
+class ProductoCreateView(LoginRequiredMixin, CreateView):
 
     model = Producto
     form_class = ProductoForm
@@ -62,7 +64,7 @@ class ProductoCreateView(CreateView):
     success_url = reverse_lazy("productos:producto-list")
 
 
-class ProductoUpdateView(UpdateView):
+class ProductoUpdateView(LoginRequiredMixin, UpdateView):
 
     model = Producto
     form_class = ProductoForm
@@ -70,7 +72,7 @@ class ProductoUpdateView(UpdateView):
     success_url = reverse_lazy("productos:producto-list")
 
 
-class ProductoDeleteView(DeleteView):
+class ProductoDeleteView(LoginRequiredMixin, DeleteView):
     
     model = Producto
     template_name = "productos/producto-confirm.html"
@@ -83,7 +85,7 @@ class ProductoDeleteView(DeleteView):
         return contexto
     
 
-class ProductoDetailView(DetailView):
+class ProductoDetailView(LoginRequiredMixin, DetailView):
     
     model = Producto
     template_name = "productos/producto-detail.html"
